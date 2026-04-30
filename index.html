@@ -371,13 +371,38 @@
         gap: 10px !important; padding: 0 16px 16px !important;
       }
 
-      /* Video cards más pequeñas */
-      .vid-thumb { height: 90px !important; }
-      .vid-body { padding: 8px 10px !important; }
-      .vid-title { font-size: 11px !important; }
-      .vid-date, .vid-badge { font-size: 8px !important; }
-      .play-btn { width: 30px !important; height: 30px !important; }
-      .play-btn svg { width: 11px !important; height: 11px !important; }
+      /* Video cards más grandes y touch-friendly en móvil */
+      .vid-thumb { height: 130px !important; }
+      .vid-body { padding: 12px 14px 14px !important; }
+      .vid-title { font-size: 13px !important; -webkit-line-clamp: 2 !important; }
+      .vid-date, .vid-badge { font-size: 10px !important; }
+      .vid-badge { padding: 3px 9px !important; }
+      .play-btn { width: 46px !important; height: 46px !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) scale(0.8) !important; }
+      .play-btn svg { width: 18px !important; height: 18px !important; }
+      .vid-overlay { min-height: 130px !important; }
+      .vid-meta { flex-wrap: wrap !important; gap: 6px !important; }
+      .vid-meta > span:first-child { flex-basis: 100% !important; }
+      .vid-card { min-height: 50px !important; margin-bottom: 14px !important; padding: 0 !important; }
+      .vid-card:active { transform: scale(0.97) translateY(1px) !important; background: rgba(255,255,255,.07) !important; }
+
+      /* Botones del modal más grandes */
+      .modal-close { padding: 12px 18px !important; font-size: 14px !important; min-width: 48px !important; min-height: 48px !important; }
+
+      /* City tabs más grande para tocar */
+      .city-tab { padding: 8px 14px !important; font-size: 12px !important; min-height: 40px !important; }
+
+      /* Menu toggle más grande */
+      .menu-toggle { width: 52px !important; height: 52px !important; }
+      .menu-toggle svg { width: 28px !important; height: 28px !important; }
+
+      /* Brand chip más grande */
+      .brand-avatar { width: 36px !important; height: 36px !important; }
+      .brand-name { font-size: 16px !important; }
+
+      /* Stat cards más grande */
+      .stat-card { padding: 14px 10px !important; min-height: 60px !important; }
+      .stat-num { font-size: 24px !important; }
+      .stat-lbl { font-size: 9px !important; }
     }
 
     /* Mobile muy pequeño */
