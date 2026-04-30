@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10.0, user-scalable=yes">
   <title>Carlogato · Mapa de Colombia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +30,8 @@
       --r: 14px;
     }
 
-    html, body { height:100%; overflow:hidden; background:var(--dark); font-family:'Barlow',sans-serif; color:var(--text); }
+    html { height:100%; }
+body { height:100%; margin:0; background:var(--dark); font-family:'Barlow',sans-serif; color:var(--text); overflow:hidden; touch-action: manipulation; }
 
     /* MAP */
     #map { position:fixed; inset:0; z-index:0; background:var(--dark); }
@@ -281,129 +282,110 @@
     .modal-grid::-webkit-scrollbar { width:3px; }
     .modal-grid::-webkit-scrollbar-thumb { background:rgba(255,255,255,.1); border-radius:2px; }
 
-    /* RESPONSIVE - Mobile First */
-    @media(max-width: 768px) {
-      :root { --sidebar-w: 100%; }
+     /* RESPONSIVE - Mobile First */
+     @media(max-width: 768px) {
+       :root { --sidebar-w: 100%; }
 
-      /* Mostrar botón hamburguesa */
-      .menu-toggle { display: flex; }
+       /* Mostrar botón hamburguesa */
+       .menu-toggle { display: flex; }
 
-      /* Overlay para cuando el sidebar está abierto */
-      .sidebar-overlay { display: block; }
+       /* Overlay para cuando el sidebar está abierto */
+       .sidebar-overlay { display: block; }
 
-      /* Sidebar desliza desde abajo — el mapa siempre visible arriba */
-      .sidebar {
-        width: 100% !important;
-        height: 72vh !important;
-        top: auto !important;
-        bottom: 0 !important;
-        right: 0 !important;
-        border-left: none !important;
-        border-top: 1px solid var(--border) !important;
-        border-radius: 20px 20px 0 0 !important;
-        transform: translateY(110%);
-        transition: transform 0.35s cubic-bezier(.4,0,.2,1) !important;
-        box-shadow: 0 -8px 48px rgba(0,0,0,.7) !important;
-        animation: none !important;
-      }
-      .sidebar.open { transform: translateY(0) !important; }
+       /* Sidebar desliza desde la derecha — cobertura completa para mejor foco */
+       .sidebar {
+         width: 100% !important;
+         height: 100vh !important;
+         top: 0 !important;
+         bottom: 0 !important;
+         right: 0 !important;
+         border-left: none !important;
+         border-top: none !important;
+         border-radius: 0 !important;
+         transform: translateX(110%);
+         transition: transform 0.35s cubic-bezier(.4,0,.2,1) !important;
+         box-shadow: -8px 0 48px rgba(0,0,0,.7) !important;
+         animation: none !important;
+         z-index: 1000 !important;
+       }
+       .sidebar.open { transform: translateX(0) !important; }
 
-      /* Tirón visual para el panel */
-      .sidebar::before {
-        content: '';
-        display: block;
-        width: 40px;
-        height: 4px;
-        background: rgba(255,255,255,.2);
-        border-radius: 2px;
-        margin: 10px auto 0;
-        flex-shrink: 0;
-      }
+       /* Tirón visual para el panel - ahora en la parte superior */
+       .sidebar::before {
+         content: '';
+         display: block;
+         width: 40px;
+         height: 4px;
+         background: rgba(255,255,255,.2);
+         border-radius: 2px;
+         margin: 16px auto 8px;
+         flex-shrink: 0;
+       }
 
-      .sb-top { padding: 8px 16px 0 !important; }
-      .sb-eye { font-size: 8px !important; }
-      .sb-head { font-size: 22px !important; }
-      .sb-meta { font-size: 10px !important; margin-bottom: 8px !important; }
-      .stats-row { gap: 5px !important; margin-bottom: 8px !important; }
-      .stat-num { font-size: 20px !important; }
-      .stat-lbl { font-size: 8px !important; }
-      .city-tabs { padding: 0 16px !important; gap: 4px !important; }
-      .city-tab { padding: 4px 10px !important; font-size: 10px !important; }
-      .sb-content { padding: 0 16px 16px !important; }
-      .sb-status { padding: 8px 16px !important; }
-      .sb-status-txt { font-size: 10px !important; }
+       .sb-top { padding: 16px 24px 0 !important; }
+       .sb-eye { font-size: 9px !important; }
+       .sb-head { font-size: 28px !important; }
+       .sb-meta { font-size: 11px !important; margin-bottom: 16px !important; }
+       .stats-row { gap: 8px !important; margin-bottom: 16px !important; }
+       .stat-num { font-size: 24px !important; }
+       .stat-lbl { font-size: 9px !important; }
+       .city-tabs { padding: 0 24px !important; gap: 6px !important; }
+       .city-tab { padding: 6px 14px !important; font-size: 11px !important; min-height: 44px; }
+       .sb-content { padding: 0 24px 24px !important; }
+       .sb-status { padding: 12px 24px !important; }
+       .sb-status-txt { font-size: 11px !important; }
 
-      /* Brand chip reposicionado */
-      .brand-chip { top: 10px !important; left: 10px !important; padding: 6px 10px !important; }
-      .brand-avatar { width: 28px !important; height: 28px !important; }
-      .brand-name { font-size: 14px !important; }
-      .brand-tag { font-size: 8px !important; }
+       /* Brand chip reposicionado */
+       .brand-chip { top: 12px !important; left: 12px !important; padding: 8px 12px !important; }
+       .brand-avatar { width: 32px !important; height: 32px !important; }
+       .brand-name { font-size: 16px !important; }
+       .brand-tag { font-size: 9px !important; }
 
-      /* Kick widget: oculto en móvil para no tapar el mapa */
-      .kick-widget { display: none !important; }
-      .kick-foot { padding: 5px 8px !important; }
-      .kick-lbl { font-size: 9px !important; }
-      .status-badge { font-size: 9px !important; padding: 2px 6px !important; }
+       /* Kick widget: oculto en móvil para no tapar el mapa */
+       .kick-widget { display: none !important; }
+       .kick-foot { padding: 6px 10px !important; }
+       .kick-lbl { font-size: 10px !important; }
+       .status-badge { font-size: 10px !important; padding: 3px 8px !important; }
 
-      /* Leyenda oculta en móvil - ocupa demasiado espacio */
-      .map-legend { display: none !important; }
+       /* Leyenda oculta en móvil - ocupa demasiado espacio */
+       .map-legend { display: none !important; }
 
-      /* Followers reposicionado - arriba a la derecha del menu toggle */
-      .followers {
-        left: auto !important; right: 68px !important; top: 10px !important; bottom: auto !important;
-        padding: 4px 8px !important;
-      }
-      .followers-lbl { font-size: 8px !important; }
-      .followers-count { font-size: 13px !important; min-width: 45px !important; }
+       /* Followers reposicionado - arriba a la derecha del menu toggle */
+       .followers {
+         left: auto !important; right: 68px !important; top: 12px !important; bottom: auto !important;
+         padding: 6px 10px !important;
+       }
+       .followers-lbl { font-size: 9px !important; }
+       .followers-count { font-size: 14px !important; min-width: 50px !important; }
 
-      /* Loader responsive */
-      .ldr-title { font-size: 32px !important; }
-      .ldr-sub { font-size: 10px !important; }
-      .ldr-track { width: 180px !important; }
+       /* Loader responsive */
+       .ldr-title { font-size: 36px !important; }
+       .ldr-sub { font-size: 11px !important; }
+       .ldr-track { width: 200px !important; }
 
-      /* Modal a pantalla completa */
-      .modal-inner { width: 100% !important; max-width: 100% !important; max-height: 100vh !important; }
-      .modal-hdr { padding: 16px !important; margin-bottom: 12px !important; }
-      .modal-title { font-size: 24px !important; }
-      .modal-close { padding: 6px 12px !important; font-size: 11px !important; }
-      .modal-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
-        gap: 10px !important; padding: 0 16px 16px !important;
-      }
+       /* Modal a pantalla completa */
+       .modal-inner { width: 100% !important; max-width: 100% !important; max-height: 100vh !important; }
+       .modal-hdr { padding: 20px !important; margin-bottom: 16px !important; }
+       .modal-title { font-size: 28px !important; }
+       .modal-close { padding: 8px 16px !important; font-size: 12px !important; }
+       .modal-grid {
+         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
+         gap: 12px !important; padding: 0 20px 20px !important;
+       }
 
-      /* Video cards más grandes y touch-friendly en móvil */
-      .vid-thumb { height: 130px !important; }
-      .vid-body { padding: 12px 14px 14px !important; }
-      .vid-title { font-size: 13px !important; -webkit-line-clamp: 2 !important; }
-      .vid-date, .vid-badge { font-size: 10px !important; }
-      .vid-badge { padding: 3px 9px !important; }
-      .play-btn { width: 46px !important; height: 46px !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) scale(0.8) !important; }
-      .play-btn svg { width: 18px !important; height: 18px !important; }
-      .vid-overlay { min-height: 130px !important; }
-      .vid-meta { flex-wrap: wrap !important; gap: 6px !important; }
-      .vid-meta > span:first-child { flex-basis: 100% !important; }
-      .vid-card { min-height: 50px !important; margin-bottom: 14px !important; padding: 0 !important; }
-      .vid-card:active { transform: scale(0.97) translateY(1px) !important; background: rgba(255,255,255,.07) !important; }
+       /* Video cards más pequeñas pero con buenos touch targets */
+       .vid-thumb { height: 100px !important; }
+       .vid-body { padding: 10px 12px !important; }
+       .vid-title { font-size: 12px !important; }
+       .vid-date, .vid-badge { font-size: 9px !important; }
+       .play-btn { width: 36px !important; height: 36px !important; }
+       .play-btn svg { width: 14px !important; height: 14px !important; }
 
-      /* Botones del modal más grandes */
-      .modal-close { padding: 12px 18px !important; font-size: 14px !important; min-width: 48px !important; min-height: 48px !important; }
+       /* Mejorar touch targets generales */
+       button, .vid-card, .city-tab, .leg-row { min-height: 44px; }
+     }
 
-      /* City tabs más grande para tocar */
-      .city-tab { padding: 8px 14px !important; font-size: 12px !important; min-height: 40px !important; }
 
-      /* Menu toggle más grande */
-      .menu-toggle { width: 52px !important; height: 52px !important; }
-      .menu-toggle svg { width: 28px !important; height: 28px !important; }
-
-      /* Brand chip más grande */
-      .brand-avatar { width: 36px !important; height: 36px !important; }
-      .brand-name { font-size: 16px !important; }
-
-      /* Stat cards más grande */
-      .stat-card { padding: 14px 10px !important; min-height: 60px !important; }
-      .stat-num { font-size: 24px !important; }
-      .stat-lbl { font-size: 9px !important; }
-    }
 
     /* Mobile muy pequeño */
     @media(max-width: 380px) {
@@ -417,14 +399,7 @@
       .kick-iframe { height: 90px !important; }
     }
 
-    /* Tablet */
-    @media(min-width: 769px) and (max-width: 1024px) {
-      :root { --sidebar-w: 320px !important; }
-      .sidebar { width: 320px !important; }
-      .sb-head { font-size: 32px !important; }
-      .kick-widget { width: 220px !important; }
-      .map-legend { bottom: 80px !important; }
-    }
+
 
     @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
   </style>
@@ -710,7 +685,7 @@ setTimeout(()=>hideLoader(), maxLoadTime);
 
 // ─── MAP ──────────────────────────────────────────────────────────────────
 const map = L.map("map", {
-  zoomControl:false, scrollWheelZoom:true, minZoom:5, maxZoom:12,
+  zoomControl:false, scrollWheelZoom:true, touchZoom:true, minZoom:5, maxZoom:12,
   maxBounds:[[-6,-84],[16,-62]], maxBoundsViscosity:.85,
   attributionControl:false, zoomAnimation:true
 }).setView([4.2,-74.0],6);
